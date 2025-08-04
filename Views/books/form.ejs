@@ -1,0 +1,29 @@
+<form method="POST" class="mt-5">
+    <% fields.map((el, idx)=>{ %>
+      <% if(el !== "description") {%>
+      
+        <div class="form-group">
+          <label for="input-<%= el %>"><%= names[idx] %></label>
+          <input type="text"
+          value="<%= book[el] %>"
+          name="<%= el %>"
+          class="form-control"
+          id="input-<%= el %>">
+        </div> 
+      <% } %>   
+    <% }) %>
+
+  <div class="form-group">
+      <label for="inputDesc">Описание</label>
+      <textarea
+              rows="3"
+              name="description"
+              class="form-control"
+              id="inputDesc"
+      ><%= book.description %></textarea>
+  </div>
+
+  <div class="form-group text-right ">
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+  </div>
+</form>
