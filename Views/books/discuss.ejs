@@ -1,4 +1,4 @@
-<h3 class="display-6">Обсуждения</h3>
+<h3 class="display-6">Обсуждения книги</h3>
 <div class="card">  
   <div class="row px-4">
     <div class="col-4">
@@ -32,10 +32,4 @@
     </div>
   </div>
 </div>
-<script>
-  const sendAll = document.getElementById('send-all');
-sendAll.addEventListener('click', clickSendAll);
-  function clickSendAll() {
-  alert('click on stnd all');
-}
-</script>
+<%- include('handler') %>

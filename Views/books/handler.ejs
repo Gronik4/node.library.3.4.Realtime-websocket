@@ -1,0 +1,26 @@
+<script>
+  //const roomName = location.pathname.split('/').pop();
+  //const socket = io.connect('/', {query: `roomName=${roomName}`});
+  
+  const boxList = document.getElementById('list');
+  const sendAll = document.getElementById('send-all');
+  const sendMe = document.getElementById('send-me');
+  const sendRoom = document.getElementById('send-room');
+  const inputUsername = document.getElementById('username');
+  const inputText     = document.getElementById('text');
+
+  sendAll.addEventListener('click', clickSendAll);
+  function clickSendAll() {
+  alert('click on send message all');
+}
+
+  sendMe.addEventListener('click', clickSendMe);
+  function clickSendMe() {
+  alert('click on send message Me');
+}
+
+  sendRoom.addEventListener('click', clickSendRoom);
+  function clickSendRoom() {
+  alert('click on send message room');
+}
+</script>
