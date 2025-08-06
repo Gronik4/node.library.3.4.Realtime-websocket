@@ -1,26 +1,51 @@
+<script src="/socket.io/socket.io.js"></script>
 <script>
-  //const roomName = location.pathname.split('/').pop();
-  //const socket = io.connect('/', {query: `roomName=${roomName}`});
+  const roomName = location.pathname.split('/').pop();
+  const socket = io.connect('/', {query: `roomName=${roomName}`});
   
   const boxList = document.getElementById('list');
   const sendAll = document.getElementById('send-all');
   const sendMe = document.getElementById('send-me');
   const sendRoom = document.getElementById('send-room');
   const inputUsername = document.getElementById('username');
-  const inputText     = document.getElementById('text');
+  const inputText = document.getElementById('text');
+  
+  const getTmp = (msg)=> {
+    return `
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <small>${msg.userName}</small>
+          <small class="text-muted">${msg.type}</small>
+        </div>
+        <p class="mb-1">${msg.text}</p>
+      </div>
+    `;
+  }
 
-  sendAll.addEventListener('click', clickSendAll);
-  function clickSendAll() {
-  alert('click on send message all');
-}
-
-  sendMe.addEventListener('click', clickSendMe);
-  function clickSendMe() {
-  alert('click on send message Me');
-}
-
+  socket.on('message-to-me', (msg)=>{
+    const div = getTmp(msg);
+    boxList.insertAdjacentHTML('afterBegin', div);
+  })
+  sendMe.addEventListener('click', ()=> {
+    socket.emit('message-to-me', {
+      userName: inputUsername.value,
+      text: inputText.value
+    })
+  });
+  
+  socket.on('message-to-all', (msg)=>{
+    const div = getTmp(msg);
+    boxList.insertAdjacentHTML('afterBegin', div);
+  })
+  sendAll.addEventListener('click', ()=> {
+    socket.emit('message-to-all', {
+      userName: inputUsername.value,
+      text: inputText.value
+    })
+  });
+  
   sendRoom.addEventListener('click', clickSendRoom);
   function clickSendRoom() {
-  alert('click on send message room');
+  alert('Я не сильно понял где можно использовать room - ни чего не сделал.');
 }
 </script>

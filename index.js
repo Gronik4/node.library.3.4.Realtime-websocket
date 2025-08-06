@@ -23,7 +23,7 @@ app.use(notPage);
 
 io.on('connection', (socket)=> {
   const { id } = socket;
-  console.log(`Sockey connectsd ${id}`);
+  console.log(`Socket connected ${id}`);
 
   //сообщение себе
   socket.on('message-to-me', (msg)=> {
@@ -43,13 +43,6 @@ io.on('connection', (socket)=> {
 })
 
 const PORT = process.env.PORT || 3006;
-/*app.listen(PORT, (err)=> {
-  if(err) {
-    return console.log(`Server not starting - err: ${err}`);
-  } else {
-    console.log(`Server starting on port: ${PORT}`);
-  }
-})*/
 server.listen(PORT, (err)=> {
   if(err) {
     return console.log(`Server not starting - err: ${err}`);

@@ -5,7 +5,6 @@ const {nanoid} = require('nanoid');
 const stor = require('../Utils/stor');
 const Book = require('../Utils/Book');
 const {fields, names} = require('../Utils/fields');
-//const discuss = require('../Utils/handler');
 
 router.get('/', (req, res)=> {
   const {books} = stor;
